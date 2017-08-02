@@ -10,9 +10,11 @@ class TweeterStreamListener(tweepy.StreamListener):
 
     def __init__(self, api):
         self.api = api
+        #use this variable for setting the server address of where the Kafka broker service is running
+        serverAdress = ''
         super(tweepy.StreamListener, self).__init__()
         print "Initializing kafka producer"
-        self.producer = KafkaProducer(bootstrap_servers=['172.31.78.243:9092'])
+        self.producer = KafkaProducer(bootstrap_servers=[serverAdress])
 
     def on_status(self, status):
         """ This method is called whenever new data arrives from live stream.
